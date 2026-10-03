@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Permission denied: maintainer credentials required."
+    }
+  ],
+  "structuredContent": {
+    "result": "Permission denied: maintainer credentials required."
+  },
+  "isError": false
+}

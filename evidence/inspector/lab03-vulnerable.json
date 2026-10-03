@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Message dispatched to +13241234123."
+    }
+  ],
+  "structuredContent": {
+    "result": "Message dispatched to +13241234123."
+  },
+  "isError": false
+}

@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Tickets (2):\n- helpdesk: System running normally.\n- eve: x'), ('leak', (SELECT payload FROM incident_intel WHERE id = 1))--"
+    }
+  ],
+  "structuredContent": {
+    "result": "Tickets (2):\n- helpdesk: System running normally.\n- eve: x'), ('leak', (SELECT payload FROM incident_intel WHERE id = 1))--"
+  },
+  "isError": false
+}

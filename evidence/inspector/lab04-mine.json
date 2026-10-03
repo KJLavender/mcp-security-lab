@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Rejected: permission denied for function pg_read_file"
+    }
+  ],
+  "structuredContent": {
+    "result": "Rejected: permission denied for function pg_read_file"
+  },
+  "isError": false
+}

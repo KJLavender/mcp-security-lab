@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Invalid repository name. Use only letters, numbers, underscores, or dashes."
+    }
+  ],
+  "structuredContent": {
+    "result": "Invalid repository name. Use only letters, numbers, underscores, or dashes."
+  },
+  "isError": false
+}

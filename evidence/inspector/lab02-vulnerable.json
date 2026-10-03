@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "FLAG{cve_2025_53110_escape_route}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "FLAG{cve_2025_53110_escape_route}\n"
+  },
+  "isError": false
+}

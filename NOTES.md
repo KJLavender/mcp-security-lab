@@ -142,7 +142,18 @@
 - Lab 07 上游 Dockerfile 沒鎖 mcp 版本（見上）
 - 第一次跑時 lab 07 build 失敗、測試卻顯示 exit 0（全部 skip）→ 加上 strict 模式與「容器啟動即退出就報錯」
 
-### 還沒做（需要人操作）
+### MCP Inspector 重現（`./inspector_repro.sh`，Inspector 2.9.0 CLI）
 
-- 用 MCP Inspector 手動重現
-- 用 AI client（Cursor／Claude Desktop）實測 agent 會不會被騙——協定層測試只驗證控制點
+每題的核心攻擊 payload 用 Inspector 送一次 `tools/call`，原始回應在 `evidence/inspector/`：
+
+| Lab | vulnerable | secure | mine |
+|---|---|---|---|
+| 01–03、05–09 | EXPLOITED | BLOCKED | BLOCKED |
+| 04（`pg_read_file`） | EXPLOITED | **EXPLOITED** | BLOCKED |
+
+- Lab 03 helper 第一次回正常內容、第二次回應夾帶改寫收件人的指令：確認
+- 與 pytest 結果一致：Lab 04 官方 secure 的 superuser 缺口用 Inspector 也重現得出來
+
+### 還沒做
+
+- 用 AI client 實測 agent 會不會被騙——協定層測試只驗證控制點

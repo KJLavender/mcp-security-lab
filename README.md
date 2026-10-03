@@ -14,6 +14,7 @@
 | `mine/lab04/readonly_role.sql` | Lab 04 的主控制點：DB 唯讀角色 |
 | `tests/test_labNN_*.py` | 每題的回歸測試（漏洞版要被打穿、修補版要擋住、正常功能要保留） |
 | `labctl.sh` | 在 WSL 用 docker 啟停所有 lab（vulnerable / 官方 secure / mine 三版，只綁 127.0.0.1） |
+| `inspector_repro.sh` | 用 MCP Inspector CLI 重現每題核心攻擊，原始回應存 `evidence/inspector/` |
 | `runtests.sh` / `run_all.sh` | 在拋棄式容器裡跑 pytest／一鍵重建 + 測試 + 收掉 |
 | `NOTES.md` | 每題筆記：攻擊面、根因、我的修法、官方差異、takeaway |
 

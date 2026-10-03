@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Denied read_config('bing_copilot_tokens'): requires debugger approval because it contains authentication material."
+    }
+  ],
+  "structuredContent": {
+    "result": "Denied read_config('bing_copilot_tokens'): requires debugger approval because it contains authentication material."
+  },
+  "isError": false
+}

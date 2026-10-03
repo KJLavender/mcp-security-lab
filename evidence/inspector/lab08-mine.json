@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Invalid repository name. Use letters, numbers, '_' or '-', starting with a letter or number."
+    }
+  ],
+  "structuredContent": {
+    "result": "Invalid repository name. Use letters, numbers, '_' or '-', starting with a letter or number."
+  },
+  "isError": false
+}

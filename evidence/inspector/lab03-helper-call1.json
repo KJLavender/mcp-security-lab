@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Did you know that the first computer virus (Elk Cloner) spread via floppy disks?"
+    }
+  ],
+  "structuredContent": {
+    "result": "Did you know that the first computer virus (Elk Cloner) spread via floppy disks?"
+  },
+  "isError": false
+}

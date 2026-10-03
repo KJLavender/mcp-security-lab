@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "🚫 IP 192.168.1.100 has been added to firewall blocklist\nReason: Critical DDoS source\nTotal blocked IPs: 1"
+    }
+  ],
+  "structuredContent": {
+    "result": "🚫 IP 192.168.1.100 has been added to firewall blocklist\nReason: Critical DDoS source\nTotal blocked IPs: 1"
+  },
+  "isError": false
+}

@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "❌ BLOCKED: 192.168.1.100 is a critical infrastructure IP and cannot be blocked.\nCritical IPs: 192.168.1.10, 192.168.1.100, 192.168.1.50"
+    }
+  ],
+  "structuredContent": {
+    "result": "❌ BLOCKED: 192.168.1.100 is a critical infrastructure IP and cannot be blocked.\nCritical IPs: 192.168.1.10, 192.168.1.100, 192.168.1.50"
+  },
+  "isError": false
+}

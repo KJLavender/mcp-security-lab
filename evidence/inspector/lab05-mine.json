@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Denied: config section 'bing_copilot_tokens' is not readable through this tool."
+    }
+  ],
+  "structuredContent": {
+    "result": "Denied: config section 'bing_copilot_tokens' is not readable through this tool."
+  },
+  "isError": false
+}

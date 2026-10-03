@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Rejected: recipient not in trusted contact list."
+    }
+  ],
+  "structuredContent": {
+    "result": "Rejected: recipient not in trusted contact list."
+  },
+  "isError": false
+}

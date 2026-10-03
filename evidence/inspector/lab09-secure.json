@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Permission denied: admin:repo_hook required for webhook access"
+    }
+  ],
+  "structuredContent": {
+    "result": "Permission denied: admin:repo_hook required for webhook access"
+  },
+  "isError": false
+}

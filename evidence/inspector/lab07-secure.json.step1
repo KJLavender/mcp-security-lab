@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Ticket created successfully."
+    }
+  ],
+  "structuredContent": {
+    "result": "Ticket created successfully."
+  },
+  "isError": false
+}

@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Access denied."
+    }
+  ],
+  "structuredContent": {
+    "result": "Access denied."
+  },
+  "isError": false
+}

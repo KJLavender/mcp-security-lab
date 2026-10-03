@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Tickets (3):\n- helpdesk: System running normally.\n- eve: x\n- leak: FLAG{sql_prompt_injection_leak}"
+    }
+  ],
+  "structuredContent": {
+    "result": "Tickets (3):\n- helpdesk: System running normally.\n- eve: x\n- leak: FLAG{sql_prompt_injection_leak}"
+  },
+  "isError": false
+}

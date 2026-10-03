@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Project data:\n{\n  \"project_id\": \"CRM-2001\",\n  \"tenant\": \"tenant_bravo\",\n  \"name\": \"M&A Dossier\",\n  \"status\": \"confidential\",\n  \"notes\": \"FLAG{confused_deputy_leak}\"\n}"
+    }
+  ],
+  "structuredContent": {
+    "result": "Project data:\n{\n  \"project_id\": \"CRM-2001\",\n  \"tenant\": \"tenant_bravo\",\n  \"name\": \"M&A Dossier\",\n  \"status\": \"confidential\",\n  \"notes\": \"FLAG{confused_deputy_leak}\"\n}"
+  },
+  "isError": false
+}

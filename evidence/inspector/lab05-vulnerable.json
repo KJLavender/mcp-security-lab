@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "FLAG{newsroom_prompt_exfiltration}"
+    }
+  ],
+  "structuredContent": {
+    "result": "FLAG{newsroom_prompt_exfiltration}"
+  },
+  "isError": false
+}
