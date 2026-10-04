@@ -1,35 +1,50 @@
-# MCP Security Lab — Breach-to-Fix 練習紀錄
+# MCP Security Lab — Breach-to-Fix practice log
 
-針對 [PawelKozy/mcp-breach-to-fix-labs](https://github.com/PawelKozy/mcp-breach-to-fix-labs) 的 9 個 MCP 漏洞情境：
-逐題重現攻擊、自己寫修補、用協定層（直接送 MCP `tools/call`，不經過 AI）的 pytest 回歸測試驗證。
+**English** | [繁體中文](README.zh-TW.md)
 
-> 本 repo **不包含** lab 原始碼（上游沒有 LICENSE）。只有：我的修補（`mine/`）、測試（`tests/`）、筆記與啟停腳本。
-> 需要時 `mine/` 會在容器內 `import server as upstream` 重用官方的種子資料，而不是複製程式碼。
+Working through the 9 MCP vulnerability scenarios in [PawelKozy/mcp-breach-to-fix-labs](https://github.com/PawelKozy/mcp-breach-to-fix-labs):
+reproduce each attack, write my own fix, and verify it with protocol-level pytest regression tests (sending MCP `tools/call` directly, no AI in the loop).
 
-## 結構
+> This repo does **not** include the lab source code (upstream has no LICENSE). It contains only my fixes (`mine/`), the tests (`tests/`), notes and runner scripts.
+> When it needs seed data, `mine/` runs `import server as upstream` inside the container to reuse the official data instead of copying the code.
 
-| 路徑 | 內容 |
+## Layout
+
+| Path | Contents |
 |---|---|
-| `mine/labNN/server.py` | 我的修補版 MCP server |
-| `mine/lab04/readonly_role.sql` | Lab 04 的主控制點：DB 唯讀角色 |
-| `tests/test_labNN_*.py` | 每題的回歸測試（漏洞版要被打穿、修補版要擋住、正常功能要保留） |
-| `labctl.sh` | 在 WSL 用 docker 啟停所有 lab（vulnerable / 官方 secure / mine 三版，只綁 127.0.0.1） |
-| `inspector_repro.sh` | 用 MCP Inspector CLI 重現每題核心攻擊，原始回應存 `evidence/inspector/` |
-| `runtests.sh` / `run_all.sh` | 在拋棄式容器裡跑 pytest／一鍵重建 + 測試 + 收掉 |
-| `NOTES.md` | 每題筆記：攻擊面、根因、我的修法、官方差異、takeaway |
+| `mine/labNN/server.py` | My fixed MCP server |
+| `mine/lab04/readonly_role.sql` | The main control for Lab 04: a read-only DB role |
+| `tests/test_labNN_*.py` | Regression tests per lab (vulnerable must be breached, fixed must block, normal functionality must keep working) |
+| `labctl.sh` | Starts/stops all labs with docker in WSL (vulnerable / official secure / mine, bound to 127.0.0.1 only) |
+| `inspector_repro.sh` | Reproduces each lab's core attack with the MCP Inspector CLI; raw responses go to `evidence/inspector/` |
+| `runtests.sh` / `run_all.sh` | Run pytest in a throwaway container / rebuild + test + tear down in one step |
+| `NOTES.md` | Per-lab notes (Traditional Chinese): attack surface, root cause, my fix, differences from the official fix, takeaway |
 
-## 怎麼跑
+## How to run
 
 ```bash
 git clone https://github.com/PawelKozy/mcp-breach-to-fix-labs ~/mcp-labs/mcp-breach-to-fix-labs
-./run_all.sh -v          # 重建全部容器 → pytest → 收掉容器
-KEEP_UP=1 ./run_all.sh   # 跑完保留容器，方便用 MCP Inspector 手動戳
+./run_all.sh -v          # rebuild all containers → pytest → tear down
+KEEP_UP=1 ./run_all.sh   # keep the containers running afterwards to poke at them with MCP Inspector
 ```
 
-每個測試都對三個 target 跑：
+Every test runs against three targets:
 
-- `vulnerable`：攻擊必須成功（證明漏洞存在、測試有效）
-- `secure`（官方修補）與 `mine`（我的修補）：攻擊必須被擋，且正常功能仍可用
-- 標成 `xfail(strict)` 的是**官方 secure 仍有的缺口**：secure 預期失敗、mine 必須通過
+- `vulnerable`: the attack must succeed (proves the vulnerability exists and the test is valid)
+- `secure` (official fix) and `mine` (my fix): the attack must be blocked, and normal functionality must still work
+- Tests marked `xfail(strict)` are **gaps that remain in the official secure build**: secure is expected to fail, mine must pass
 
-測試結果見 [NOTES.md](NOTES.md#測試結果)。
+## Results
+
+On fresh containers: **137 passed, 10 xfailed, 0 failed, 0 skipped**.
+
+The 10 xfails are gaps I found in the official fixes, each captured as a regression test that my fix passes:
+
+- **Lab 05 / 06 / 09**: security state is kept in `threading.local`, but FastMCP 1.x runs sync tools on the event-loop thread, so it's effectively process-global — one session reading untrusted content locks out every session (3 tests)
+- **Lab 09**: `grant_admin_permissions()` is a tool the LLM can call, so an injected agent can escalate itself and read the webhook secret
+- **Lab 04**: connects as a database superuser, so `SELECT pg_read_file('/etc/passwd')` still reads files on the DB host; the semicolon check also rejects valid queries like `SELECT ';'`
+- **Lab 06**: the internal-IP check splits strings on `.`, so `0.0.0.0/0` and `::ffff:192.168.1.100` are accepted
+- **Lab 07**: stored ticket content is returned to the LLM as raw text, with no data/instruction boundary
+- **Lab 08**: re-initializing a repo with the same name `rmtree`s the existing one first
+
+Details are in [NOTES.md](NOTES.md#測試結果).
